@@ -1,25 +1,30 @@
-# Kalender Tugas Terintegrasi — Eksperimen B
+# Kalender Tugas Terintegrasi — Eksperimen B — PRD + Skill
 
-Versi UX-driven — PRD + Skill .
+UX-driven.
 
-## Menjalankan
-Buka `index.html` di browser modern. Untuk menghindari pembatasan browser pada penyimpanan lokal, jalankan server statis dari folder proyek, misalnya `python -m http.server 8000`, lalu buka `http://localhost:8000`. Tidak ada dependensi build eksternal.
+## Input eksperimen
+PRD.md, UX-SPEC.md, DESIGN-SYSTEM.md, INTERACTION-SPEC.md, ACCEPTANCE-CRITERIA.md, dan AGENTS.md.
 
-## Cakupan yang diimplementasikan
-- Dashboard dan ringkasan tugas
-- CRUD tugas dengan validasi wajib dan batas panjang input
-- Kalender bulanan dan mingguan serta pemilihan tanggal
-- Daftar tugas, filter, dan pengurutan
-- Status Belum Dikerjakan, Sedang Dikerjakan, Selesai; keterlambatan dihitung, bukan status tersimpan
-- Jadwal H-3 dan H-1 lokal pada pukul 09.00 ketika aplikasi terbuka
-- localStorage untuk persistensi pada browser/perangkat yang sama
-- Layout responsif
+## Menjalankan aplikasi
+Dari terminal pada folder proyek, jalankan `python -m http.server 8000`, lalu buka `http://localhost:8000`. Aplikasi menggunakan HTML, CSS, JavaScript tanpa dependensi build eksternal. Stack ini dipilih sebagai implementasi awal sisi-klien karena PRD tidak menetapkan framework atau stack tertentu.
 
-## Batasan penting
-Ini adalah prototipe aplikasi sisi-klien. Pengingat diperiksa saat aplikasi terbuka dan ditampilkan sebagai notifikasi lokal dalam aplikasi; layanan push/background, backend scheduler, autentikasi, database server, dan isolasi data multi-pengguna belum dikonfigurasi. Karena itu AC-014/015/019/037 belum dapat dinyatakan lulus produksi.
+## Fitur yang tersedia pada prototipe
+- Dashboard dengan ringkasan total, status tugas, tugas mendatang, dan tugas terlambat.
+- Tambah dan edit tugas dengan validasi field wajib dan tenggat.
+- Hapus tugas dengan konfirmasi.
+- Kalender bulanan dan tampilan mingguan.
+- Daftar tugas dengan filter status dan pengurutan.
+- Perubahan status: Belum Dikerjakan, Sedang Dikerjakan, dan Selesai. Terlambat dihitung sebagai kondisi berdasarkan tenggat, bukan status keempat tersimpan.
+- Jadwal lokal H-3/H-1 pukul 09.00 ketika aplikasi terbuka.
+- Penyimpanan data pada `localStorage` browser dan layout responsif.
 
-## Perbedaan eksperimen
-- Eksperimen A: baseline implementasi berdasarkan PRD.md saja; visual dan interaksi dibuat sederhana untuk baseline.
-- Eksperimen B: implementasi memakai PRD.md bersama UX-SPEC.md, DESIGN-SYSTEM.md, INTERACTION-SPEC.md, ACCEPTANCE-CRITERIA.md, dan AGENTS.md; penekanan pada fokus keyboard, state interaksi, kalender mingguan, error recovery, dan konsistensi komponen.
+## Penyesuaian yang ditekankan oleh dokumen Skill
+- Navigasi kartu ringkasan menuju daftar tugas dengan filter terkait.
+- Fokus keyboard dan indikator `focus-visible` pada kartu ringkasan.
+- Pemisahan tampilan serta interaksi yang lebih terarah pada daftar status dan kalender.
+- Enam dokumen spesifikasi disertakan di repository sebagai sumber acuan.
 
-**Catatan:** Paket ini disiapkan sebagai kode awal yang dapat dijalankan dan diuji. Catatan penggunaan AI coding agent, revisi, waktu pengerjaan, dan commit eksperimen perlu dilengkapi berdasarkan proses aktual sebelum laporan perbandingan final.
+## Batasan
+Versi ini tetap merupakan prototipe sisi-klien. Pengingat hanya diperiksa saat aplikasi terbuka dan ditampilkan di dalam aplikasi; belum ada layanan push/background atau backend scheduler. Autentikasi, database server, dan isolasi data multi-pengguna juga belum dikonfigurasi. Karena itu, AC terkait layanan notifikasi produksi dan isolasi multi-pengguna belum boleh dinyatakan lulus.
+
+Isi `EXPERIMENT-LOG-TEMPLATE.md` berdasarkan penggunaan AI coding yang benar-benar dilakukan. `COMPARISON-METRICS.md` digunakan untuk mencatat bukti perbandingan, bukan mengarang hasil.

@@ -1,63 +1,66 @@
-# Kalender Tugas Terintegrasi — Eksperimen B — PRD + Skill
+# Kalender Tugas Terintegrasi — Eksperimen B
 
-UX-driven.
-
-## Struktur proyek
-
-```text
-taskflow-prd-skill/
-├── README.md
-├── PRD.md
-├── UX-SPEC.md
-├── DESIGN-SYSTEM.md
-├── INTERACTION-SPEC.md
-├── ACCEPTANCE-CRITERIA.md
-├── AGENTS.md
-├── package.json
-├── index.html
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── styles/
-│   └── utils/
-├── public/
-├── tests/
-├── docs/
-│   └── experiment-log-B.md
-└── .gitignore
-```
-
-## Input eksperimen
-PRD.md, UX-SPEC.md, DESIGN-SYSTEM.md, INTERACTION-SPEC.md, ACCEPTANCE-CRITERIA.md, dan AGENTS.md.
+Implementasi mandiri berbasis `PRD.md`, `UX-SPEC.md`, `DESIGN-SYSTEM.md`, `INTERACTION-SPEC.md`, `ACCEPTANCE-CRITERIA.md`, dan `AGENTS.md`.
 
 ## Menjalankan aplikasi
-Dari terminal pada folder proyek, jalankan `python -m http.server 8000`, lalu buka `http://localhost:8000`. Aplikasi menggunakan HTML, CSS, JavaScript tanpa dependensi build eksternal. Stack ini dipilih sebagai implementasi awal sisi-klien karena PRD tidak menetapkan framework atau stack tertentu.
 
-## Fitur yang tersedia pada prototipe
-- Dashboard dengan ringkasan total, status tugas, tugas mendatang, dan tugas terlambat.
-- Tambah dan edit tugas dengan validasi field wajib dan tenggat.
-- Hapus tugas dengan konfirmasi.
-- Kalender bulanan dan tampilan mingguan.
-- Daftar tugas dengan filter status dan pengurutan.
-- Perubahan status: Belum Dikerjakan, Sedang Dikerjakan, dan Selesai. Terlambat dihitung sebagai kondisi berdasarkan tenggat, bukan status keempat tersimpan.
-- Jadwal lokal H-3/H-1 pukul 09.00 ketika aplikasi terbuka.
-- Penyimpanan data pada `localStorage` browser dan layout responsif.
+Diperlukan Python 3 untuk server statis lokal.
 
-## Penyesuaian yang ditekankan oleh dokumen Skill
-- Navigasi kartu ringkasan menuju daftar tugas dengan filter terkait.
-- Fokus keyboard dan indikator `focus-visible` pada kartu ringkasan.
-- Pemisahan tampilan serta interaksi yang lebih terarah pada daftar status dan kalender.
-- Enam dokumen spesifikasi disertakan di repository sebagai sumber acuan.
+```powershell
+python -m http.server 8000
+```
+
+Buka `http://localhost:8000`.
+
+Pengujian logika:
+
+```powershell
+npm test
+```
+
+## Fitur
+
+- Dashboard ringkasan total, belum dikerjakan, sedang dikerjakan, selesai, mendatang, dan terlambat.
+- CRUD tugas lengkap dengan validasi nama, mata kuliah, deskripsi, tenggat, dan status.
+- Konfirmasi penghapusan serta pembatalan jadwal pengingat terkait.
+- Kalender bulanan dan mingguan, pemilihan tanggal, navigasi bulan, Hari ini, dan daftar tugas per tanggal.
+- Daftar tugas dengan filter status/terlambat dan pengurutan tenggat/nama.
+- Perubahan status dengan feedback; status terlambat dihitung turunan.
+- Jadwal pengingat H-3 dan H-1 pukul 09.00 waktu lokal.
+- Penyimpanan persisten lokal menggunakan `localStorage`.
+- Layout responsif desktop, tablet, dan mobile; navigasi mobile, fokus keyboard, label form, modal, dan toast.
+
+## Keputusan implementasi
+
+- Stack HTML/CSS/JavaScript vanilla dipilih karena spesifikasi tidak menetapkan framework dan aplikasi dapat berjalan statis tanpa dependensi build.
+- Penyimpanan dan pengingat bersifat lokal. Pengingat dievaluasi saat aplikasi terbuka dan setiap 60 detik.
+- Tidak ada autentikasi, database server, layanan push, atau scheduler background. Konteks pengguna diimplementasikan sebagai pengguna demonstrasi Budi.
+- Pengingat tidak diklaim terkirim ke layanan eksternal. Versi lokal menampilkan feedback in-app dan menyimpan status queue lokal.
+
+Rincian terdapat pada `DECISIONS.md`.
 
 ## Batasan
-Versi ini tetap merupakan prototipe sisi-klien. Pengingat hanya diperiksa saat aplikasi terbuka dan ditampilkan di dalam aplikasi; belum ada layanan push/background atau backend scheduler. Autentikasi, database server, dan isolasi data multi-pengguna juga belum dikonfigurasi. Karena itu, AC terkait layanan notifikasi produksi dan isolasi multi-pengguna belum boleh dinyatakan lulus.
 
-Gunakan `docs/experiment-log-B.md` untuk mencatat proses pengembangan. `docs/comparison-metrics.md` digunakan untuk mencatat bukti perbandingan, sedangkan hasil pengujian berada di `tests/QA-RESULTS.md`.
+- Data hanya tersedia pada browser yang sama.
+- Tidak ada isolasi data lintas pengguna.
+- Tidak ada autentikasi atau otorisasi server.
+- Pengingat tidak berjalan ketika aplikasi tidak dibuka dan tidak ada push/background delivery.
+- Tidak diuji integrasi notifikasi eksternal, database produksi, security multi-pengguna, atau kegagalan jaringan backend.
 
-## Prototype Worksheet 12 (LMS UMM)
+## Pengujian aktual
 
-Prototipe tambahan untuk deliverable Worksheet 12 berada di `public/prototype-lms-umm/`. Prototipe ini terpisah dari aplikasi PRD + Skill dan dapat dibuka melalui:
+- Pengujian logika dijalankan dengan Node `node:test` melalui `npm test`.
+- Hasil mencakup validasi, jadwal kurang dari tiga hari, status terlambat, pembatalan tugas selesai, rescheduling, deduplikasi, filter, dan sorting.
+- Server statis diuji dengan HTTP smoke test.
+- Browser automation/screenshot belum tersedia pada sesi implementasi; pembuktian browser visual dan visual responsive ditandai Not Tested atau bukti terbatas pada pemeriksaan implementasi.
 
-`https://<github-username>.github.io/<repository-name>/public/prototype-lms-umm/`
+Matriks lengkap AC-001 sampai AC-043: `tests/AC-MATRIX.md`.
 
-Ganti placeholder dengan akun GitHub dan nama repository yang sebenarnya setelah publikasi.
+## Struktur utama
+
+- `index.html` — entry-point aplikasi.
+- `src/styles/app.css` — design tokens dan layout responsif.
+- `src/utils/core.js` — validasi, status, jadwal, filter, dan sorting.
+- `src/utils/app-new.js` — render halaman dan interaksi browser.
+- `tests/core.test.js` — automated test logika.
+- `tests/AC-MATRIX.md` — matriks penerimaan.

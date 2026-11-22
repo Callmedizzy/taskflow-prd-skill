@@ -2,6 +2,31 @@
 
 UX-driven.
 
+## Struktur proyek
+
+```text
+taskflow-prd-skill/
+├── README.md
+├── PRD.md
+├── UX-SPEC.md
+├── DESIGN-SYSTEM.md
+├── INTERACTION-SPEC.md
+├── ACCEPTANCE-CRITERIA.md
+├── AGENTS.md
+├── package.json
+├── index.html
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── styles/
+│   └── utils/
+├── public/
+├── tests/
+├── docs/
+│   └── experiment-log-B.md
+└── .gitignore
+```
+
 ## Input eksperimen
 PRD.md, UX-SPEC.md, DESIGN-SYSTEM.md, INTERACTION-SPEC.md, ACCEPTANCE-CRITERIA.md, dan AGENTS.md.
 
@@ -27,12 +52,12 @@ Dari terminal pada folder proyek, jalankan `python -m http.server 8000`, lalu bu
 ## Batasan
 Versi ini tetap merupakan prototipe sisi-klien. Pengingat hanya diperiksa saat aplikasi terbuka dan ditampilkan di dalam aplikasi; belum ada layanan push/background atau backend scheduler. Autentikasi, database server, dan isolasi data multi-pengguna juga belum dikonfigurasi. Karena itu, AC terkait layanan notifikasi produksi dan isolasi multi-pengguna belum boleh dinyatakan lulus.
 
-Isi `EXPERIMENT-LOG-TEMPLATE.md` berdasarkan penggunaan AI coding yang benar-benar dilakukan. `COMPARISON-METRICS.md` digunakan untuk mencatat bukti perbandingan, bukan mengarang hasil.
+Gunakan `docs/experiment-log-B.md` untuk mencatat proses pengembangan. `docs/comparison-metrics.md` digunakan untuk mencatat bukti perbandingan, sedangkan hasil pengujian berada di `tests/QA-RESULTS.md`.
 
 ## Prototype Worksheet 12 (LMS UMM)
 
-Folder `prototype-lms-umm/` is an additional interactive prototype for the separate Worksheet 12 deliverable. It is not part of the PRD + Skill app being compared in the experiment. After enabling GitHub Pages with the included workflow, it can be opened at:
+Prototipe tambahan untuk deliverable Worksheet 12 berada di `public/prototype-lms-umm/`. Prototipe ini terpisah dari aplikasi PRD + Skill dan dapat dibuka melalui:
 
-`https://<github-username>.github.io/<repository-name>/prototype-lms-umm/`
+`https://<github-username>.github.io/<repository-name>/public/prototype-lms-umm/`
 
-Replace the placeholders with the actual GitHub account and repository name after publication.
+Ganti placeholder dengan akun GitHub dan nama repository yang sebenarnya setelah publikasi.

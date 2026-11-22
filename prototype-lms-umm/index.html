@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prototype LMS UMM — Pusat Tugas</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="prototype-label">PROTOTYPE KONSEP • DATA CONTOH • BUKAN LMS PRODUKSI</div>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">U</div><div><b>LMS UMM</b><small>Ruang Tugas</small></div></div>
+    <div class="side-caption">MENU UTAMA</div>
+    <button class="nav active" data-page="dashboard"><span>▦</span> Beranda</button>
+    <button class="nav" data-page="tasks"><span>☷</span> Tugas Semester Ini</button>
+    <div class="side-note"><b>Konsep perbaikan UX</b><p>Memusatkan tugas semester berjalan agar mahasiswa tidak perlu membuka course satu per satu.</p></div>
+    <div class="profile"><div class="avatar">AF</div><div><b>Adam Fauzan</b><small>Mahasiswa</small></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><span class="crumb">LMS UMM /</span> <b id="pageCrumb">Beranda</b></div><div class="top-actions"><span class="semester">Semester Ganjil 2026/2027</span><span class="avatar small">AF</span></div></header>
+    <nav class="mobile-nav" aria-label="Navigasi utama"><button class="active" data-mobile-page="dashboard">Beranda</button><button data-mobile-page="tasks">Tugas Semester Ini</button></nav>
+    <section id="screen" class="screen"></section>
+    <footer>Rancangan konseptual untuk Worksheet 12 • Alur utama: temukan tugas → periksa detail → pastikan course → simulasi pengumpulan.</footer>
+  </main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script></body></html>

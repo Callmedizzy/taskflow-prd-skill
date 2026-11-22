@@ -28,3 +28,11 @@ Dari terminal pada folder proyek, jalankan `python -m http.server 8000`, lalu bu
 Versi ini tetap merupakan prototipe sisi-klien. Pengingat hanya diperiksa saat aplikasi terbuka dan ditampilkan di dalam aplikasi; belum ada layanan push/background atau backend scheduler. Autentikasi, database server, dan isolasi data multi-pengguna juga belum dikonfigurasi. Karena itu, AC terkait layanan notifikasi produksi dan isolasi multi-pengguna belum boleh dinyatakan lulus.
 
 Isi `EXPERIMENT-LOG-TEMPLATE.md` berdasarkan penggunaan AI coding yang benar-benar dilakukan. `COMPARISON-METRICS.md` digunakan untuk mencatat bukti perbandingan, bukan mengarang hasil.
+
+## Prototype Worksheet 12 (LMS UMM)
+
+Folder `prototype-lms-umm/` is an additional interactive prototype for the separate Worksheet 12 deliverable. It is not part of the PRD + Skill app being compared in the experiment. After enabling GitHub Pages with the included workflow, it can be opened at:
+
+`https://<github-username>.github.io/<repository-name>/prototype-lms-umm/`
+
+Replace the placeholders with the actual GitHub account and repository name after publication.
